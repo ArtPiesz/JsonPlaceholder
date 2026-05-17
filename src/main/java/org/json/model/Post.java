@@ -1,4 +1,4 @@
-package org.json;
+package org.json.model;
 
 public record Post(
         int userId,
