@@ -14,4 +14,12 @@ public class AppConfig {
                 "output"
         );
     }
+
+    public String postsUrl() {
+        return postsUrl;
+    }
+
+    public String outputDirectory() {
+        return outputDirectory;
+    }
 }
