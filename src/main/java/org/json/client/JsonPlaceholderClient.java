@@ -67,15 +67,16 @@ public class JsonPlaceholderClient {
                                 ". HTTP status: " + response.statusCode()
                 );
 
-            } catch (IOException | InterruptedException e) {
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new ApiException("Request interrupted while fetching posts", e);
+            } catch (IOException e) {
                 if (attempt == MAX_RETRIES) {
-                    throw new ApiException(
-                            "Failed after " + MAX_RETRIES + " attempts", e
-                    );
+                    throw new ApiException("Failed after " + MAX_RETRIES + " attempts", e);
                 }
                 System.err.println("Attempt " + attempt + " failed: " + e.getMessage() + ". Retrying...");
                 try {
-                    Thread.sleep(500L * attempt); // simple linear backoff
+                    Thread.sleep(500L * attempt);
                 } catch (InterruptedException ie) {
                     Thread.currentThread().interrupt();
                     throw new ApiException("Interrupted during retry backoff", ie);
