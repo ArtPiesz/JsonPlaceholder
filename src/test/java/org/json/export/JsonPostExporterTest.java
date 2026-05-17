@@ -1,10 +1,9 @@
 
-package org.json.client.export;
+package org.json.export;
 
 import org.json.exception.ExportException;
 import org.json.model.Post;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.export.JsonPostExporter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
